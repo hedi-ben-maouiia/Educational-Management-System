@@ -1,6 +1,7 @@
 #include "helper.hpp"
 #include <error.h>
 #include <fstream>
+#include <ios>
 #include <sstream>
 #include <stdexcept>
 #include <string>
@@ -53,11 +54,34 @@ std::vector<std::string> split_string(std::string to_splite ,std::vector<std::st
     }
     return splited_string;
 }
-std::size_t to_int(std::string str)
+int to_int(std::string str)
 {
-    std::size_t number;
+    int number;
     std::stringstream ss(str);
     ss >> number;
     return number;
+}
+int read_choice(int size)
+{
+    int choice = 0;
+    std::cout << "Enter a choice between 1 - " << size << ": ";
+    std::string inp;
+    std::cin >> inp;
+    choice = to_int(inp);
+    return choice;
+}
+int show_menu(std::vector<std::string> menu_content)
+{
+    int size = menu_content.size();
+    int choice=0;
+    std::cout << " Menu:\n";
+    for(int i{0}; i < size; ++i)
+        std::cout << "\t" << i+1 << " - " << menu_content[i] << ".\n";
+    choice = read_choice(size);
+    while(!(1 <= choice && choice <= size)){
+        std::cout << "Pleas enter a valid number!\n";
+        choice = read_choice(size);
+    }
+    return choice;
 }
 

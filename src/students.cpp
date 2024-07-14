@@ -1,25 +1,21 @@
 #include "students.hpp"
-#include "helper.hpp"
-#include "types.hpp"
-#include <sstream>
 
-STUDENT::STUDENT(std::string str)
+student::student() : person::person()
 {
-    std::vector<std::string> info;
-    info = split_string(str,info,',');
-    STUDENT::id         = to_int(info[0]);
-    STUDENT::user_name  = info[1];
-    STUDENT::full_name  = info[2];
-    STUDENT::email      = info[3];
-    STUDENT::password   = info[4];
-    STUDENT::att        = (ATTRIBUTE)to_int(info[5]);
 }
 
-std::string STUDENT::to_string()
+
+int student::show_student_menu()
 {
-    std::ostringstream os;
-    os << STUDENT::id <<","<< STUDENT::user_name <<","<< STUDENT::full_name <<","<< STUDENT::email << "," << STUDENT::password<<","<< STUDENT::att;
-    return os.str();
+    std::vector<std::string> menu_content;
+    menu_content.push_back("Register in Course");
+    menu_content.push_back("List my Courses");
+    menu_content.push_back("View Course");
+    menu_content.push_back("Grade Report");
+    menu_content.push_back("Logout");
+    int choice = show_menu(menu_content);
+    return choice;
 }
+
 
 

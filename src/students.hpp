@@ -1,24 +1,18 @@
 #ifndef STUDENT_H_
 #define STUDENT_H_
-#include "types.hpp"
 #include "courses.hpp"
-#include "helper.hpp"
-#include <vector>
+#include "persons.hpp"
 
-class STUDENT {
+class student : public person
+{
     public:
-        std::size_t id;
-        std::string user_name;
-        std::string full_name;
-        std::string email;
-        std::string password;
-        ATTRIBUTE   att;
-        std::vector<COURSES*> registred_courses;
+        student();
+        student(std::string str);
+        std::string to_string();
+        int show_student_menu();
 
-    STUDENT() : id(0) , att(STD) {}
-    STUDENT(std::string student_info);
-    std::string to_string();
-
+    private:
+        std::vector<courses*> registred_courses;
 };
 
 

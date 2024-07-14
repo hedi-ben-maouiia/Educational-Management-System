@@ -1,20 +1,15 @@
 #ifndef TA_H_
 #define TA_H_
+#include "persons.hpp"
 
-#include "types.hpp"
 
-
-class TEACHER_ASS {
-
+class teacher_ass : public person{
     public:
-        std::size_t id;
-        std::string user_name;
-        std::string full_name;
-        std::string email;
-        std::string password;
-        ATTRIBUTE   att;
-
+        teacher_ass();
         std::string to_string();
+        int show_ta_menu();
+    private:
+
 };
 
 

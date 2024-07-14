@@ -1,19 +1,24 @@
 #ifndef SYSTEM_H_
 #define SYSTEM_H_
-#include "doctors.h"
-#include "TA.h"
-#include "students.h"
-#include "types.h"
-#include <vector>
 
-class SYSTEM { 
+#include "TA.hpp"
+#include "students.hpp"
+#include "doctors.hpp"
+#include "persons.hpp"
+
+class system {
     public:
-        std::vector<DOCTOR*> doctors_database;
-    
-        void loead_data_base(std::vector<DOCTOR*> *doctors_db,std::vector<STUDENT*> *students_db,std::vector<TEACHER_ASS*> *ta_db);
+        void load_data_base(std::vector<doctor*> *doctors_db,std::vector<student*> *students_db,std::vector<teacher_ass*> *ta_db);
         void update_data_base();
-        void login();
-        void sign_up(); 
+        void run_system();
+        attribute access_system();
+        attribute login();
+        attribute sign_up();
+        void logout();
+
+    private:
+        std::vector<doctor*> doctors_database;
+
 };
 
 
