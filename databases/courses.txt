@@ -1,0 +1,2 @@
+CM512,computer_system,naim,0010378,0010379
+

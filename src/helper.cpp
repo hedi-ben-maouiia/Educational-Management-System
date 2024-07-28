@@ -1,10 +1,71 @@
 #include "helper.hpp"
+#include "persons.hpp"
+#include "system.hpp"
 #include <error.h>
 #include <fstream>
 #include <ios>
 #include <sstream>
 #include <stdexcept>
 #include <string>
+#include <stack>
+
+bool user_name_exist(std::string user_name,std::map<std::string,std::pair<std::string,attribute>> &users)
+{
+    if(users.count(user_name))
+        return false;
+    return true;
+}
+bool is_alpha(const char c)
+{
+    return ( 'A' <= c && c <= 'z');
+}
+
+bool check_email_failed(std::string email)
+{
+    int len = email.length();
+    if(!is_alpha(email[0]))
+        return false;
+    int alt,dot;
+    alt = dot = -1;
+    for(int i{0}; i < len;++i){
+        if(email[i] == '@')
+            alt = i;
+        if(email[i] == '.')
+            dot = i;
+    }
+    if(alt == -1 || dot == -1)
+        return false;
+    if(alt > dot)
+        return false;
+    return !(dot >= ( len - 1) );
+}
+void check_user(std::map<std::string,std::pair<std::string,attribute>>&users,std::string &buffer,const std::string input_msg,const std::string err_msg,bool (*func)(std::string str,std::map<std::string,std::pair<std::string,attribute>>&users))
+{
+    while(true){
+        input(input_msg,buffer);
+        if(!func(buffer,users))
+            std::cout << err_msg;
+        else
+            break;
+    }
+
+}
+void check_email(std::string &buffer,const std::string input_msg,const std::string err_msg,bool (*func)(std::string str))
+{
+    while(true){
+        input(input_msg,buffer);
+        if(!func(buffer))
+            std::cout << err_msg;
+        else
+            break;
+    }
+}
+void input(const std::string msg,std::string &buffer)
+{
+    std::cout << msg;
+    std::getline(std::cin,buffer);
+    buffer[buffer.size()] = '\0';
+}
 
 std::vector<std::string> fetch_data(const std::string file_path,std::vector<std::string> &data_fetched)
 {
@@ -61,6 +122,19 @@ int to_int(std::string str)
     ss >> number;
     return number;
 }
+std::string to_str(int number)
+{
+    std::stack<char> st;
+    std::string str;
+    while(number){
+        int dig = number % 10;
+        st.push(dig + '0');
+        number /= 10;
+    }
+    while(!st.empty())
+        str.push_back(st.top()), st.pop();
+    return str;
+}
 int read_choice(int size)
 {
     int choice = 0;
@@ -84,4 +158,3 @@ int show_menu(std::vector<std::string> menu_content)
     }
     return choice;
 }
-

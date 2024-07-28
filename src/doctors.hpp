@@ -1,12 +1,15 @@
 #ifndef DOCTOR_H_
 #define DOCTOR_H_
+
+//#include "courses.hpp"
 #include "courses.hpp"
 #include "persons.hpp"
+#include "helper.hpp"
 
-class doctor : public person {
+class doctor : public person, private courses {
     private:
-        std::vector<courses*> created_courses;
-        std::size_t           courses_count;
+        std::vector<courses*> courses_list;
+        unsigned int          courses_count;
 
     public:
         doctor();

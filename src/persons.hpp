@@ -2,12 +2,12 @@
 
 #include <iostream>
 #include <vector>
-#include "helper.hpp"
+#include <map>
 
 enum attribute{
-    DOC,
-    STD,
-    TA,
+    DOC = 1,
+    STD = 2,
+    TA = 3,
 };
 
 class person {

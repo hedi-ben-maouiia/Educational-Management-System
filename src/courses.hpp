@@ -1,7 +1,9 @@
 #ifndef COURSES_H_
 #define COURSES_H_
+
 #include <iostream>
 #include <vector>
+
 
 class  courses
 {
@@ -14,7 +16,6 @@ class  courses
         std::string name;
         std::string author;
         std::vector<std::size_t> registred_students_ids;
-
 
 };
 

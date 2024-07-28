@@ -3,7 +3,7 @@
 doctor::doctor() : person::person(){
 }
 doctor::doctor(std::string str, courses *course) : person::person(str){
-    created_courses.push_back(course);
+    courses_list.push_back(course);
     courses_count = 0;
 }
 

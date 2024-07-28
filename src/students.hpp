@@ -2,6 +2,7 @@
 #define STUDENT_H_
 #include "courses.hpp"
 #include "persons.hpp"
+#include "helper.hpp"
 
 class student : public person
 {
